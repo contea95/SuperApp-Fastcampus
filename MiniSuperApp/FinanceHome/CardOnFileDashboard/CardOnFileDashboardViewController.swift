@@ -9,9 +9,7 @@ import ModernRIBs
 import UIKit
 
 protocol CardOnFileDashboardPresentableListener: AnyObject {
-  // TODO: Declare properties and methods that the view controller can invoke to perform
-  // business logic, such as signIn(). This protocol is implemented by the corresponding
-  // interactor class.
+  func didTapAddPaymentMethod()
 }
 
 final class CardOnFileDashboardViewController: UIViewController, CardOnFileDashboardPresentable, CardOnFileDashboardViewControllable {
@@ -71,7 +69,8 @@ final class CardOnFileDashboardViewController: UIViewController, CardOnFileDashb
   
   @objc
   private func addButtonDidTap() {
-    
+    // 탭하는 이벤트 발생 시 리스너에게 해당 페이먼트메서드를 알린다.
+    listener?.didTapAddPaymentMethod()
   }
   
   init() {
