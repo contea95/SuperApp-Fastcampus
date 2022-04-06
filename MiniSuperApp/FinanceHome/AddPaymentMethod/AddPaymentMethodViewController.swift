@@ -11,6 +11,7 @@ import UIKit
 protocol AddPaymentMethodPresentableListener: AnyObject {
   // 화면 닫기는 라우터가 적합하므로 리스너에게 전달 -> 지금은 interactor로 전달됨
   func didTapClose()
+  func didTapConfirm(with number: String, cvc: String, expiry: String)
 }
 
 final class AddPaymentMethodViewController: UIViewController, AddPaymentMethodPresentable, AddPaymentMethodViewControllable {
@@ -119,7 +120,12 @@ final class AddPaymentMethodViewController: UIViewController, AddPaymentMethodPr
   
   @objc
   private func didTapAddCard() {
-    
+    // 텍스트 언래핑 후 인터렉터로 전달
+    if let number = cardNumberTextField.text,
+       let cvc = securityTextField.text,
+       let expiry = expirationTextField.text {
+      listener?.didTapConfirm(with: number, cvc: cvc, expiry: expiry)
+    }
   }
   
   @objc

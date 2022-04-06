@@ -12,7 +12,7 @@ protocol CardOnFileDashboardDependency: Dependency {
 }
 
 final class CardOnFileDashboardComponent: Component<CardOnFileDashboardDependency>, CardOnFileDashboardInteractorDependency {
-  var cardOnFileRepository: CardOnFileRepository { dependency.cardsOnFileRepository }
+  var cardsOnFileRepository: CardOnFileRepository { dependency.cardsOnFileRepository }
   
 }
 

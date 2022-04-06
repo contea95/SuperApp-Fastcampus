@@ -24,7 +24,7 @@ protocol CardOnFileDashboardListener: AnyObject {
 }
 
 protocol CardOnFileDashboardInteractorDependency {
-  var cardOnFileRepository: CardOnFileRepository { get }
+  var cardsOnFileRepository: CardOnFileRepository { get }
 }
 
 final class CardOnFileDashboardInteractor: PresentableInteractor<CardOnFileDashboardPresentable>, CardOnFileDashboardInteractable, CardOnFileDashboardPresentableListener {
@@ -50,7 +50,7 @@ final class CardOnFileDashboardInteractor: PresentableInteractor<CardOnFileDashb
   override func didBecomeActive() {
     super.didBecomeActive()
     
-    dependency.cardOnFileRepository.cardOnFile.sink { methods in
+    dependency.cardsOnFileRepository.cardOnFile.sink { methods in
       // 처음 5개 카드만 보여줌
       let viewModels = methods.prefix(5).map(PaymentMethodViewModel.init)
       // self -> [weak self]를 해줘야 하지만 하지 않고 cancellables를 전부 cancel(), removeAll()을 함
